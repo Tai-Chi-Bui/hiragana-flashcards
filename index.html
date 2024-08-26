@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiragana Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <div class="controls">
+            <label for="category-select">Select Hiragana Category:</label>
+            <select id="category-select">
+                <optgroup label="Basic Hiragana">
+                    <option value="a-group">A Group (あ行)</option>
+                    <option value="k-group">K Group (か行)</option>
+                    <option value="s-group">S Group (さ行)</option>
+                    <option value="t-group">T Group (た行)</option>
+                    <option value="n-group">N Group (な行)</option>
+                    <option value="h-group">H Group (は行)</option>
+                    <option value="m-group">M Group (ま行)</option>
+                    <option value="y-group">Y Group (や行)</option>
+                    <option value="r-group">R Group (ら行)</option>
+                    <option value="w-group">W Group (わ行)</option>
+                    <option value="n-character">N Character (ん)</option>
+                </optgroup>
+                <optgroup label="Dakuten and Handakuten (Voiced and Semi-voiced Sounds)">
+                    <option value="g-group">G Group (が行)</option>
+                    <option value="z-group">Z Group (ざ行)</option>
+                    <option value="d-group">D Group (だ行)</option>
+                    <option value="b-group">B Group (ば行)</option>
+                    <option value="p-group">P Group (ぱ行)</option>
+                </optgroup>
+                <optgroup label="Yōon (Contracted Sounds)">
+                    <option value="ky-group">Ky Group (きゃ行)</option>
+                    <option value="sh-group">Sh Group (しゃ行)</option>
+                    <option value="ch-group">Ch Group (ちゃ行)</option>
+                    <option value="ny-group">Ny Group (にゃ行)</option>
+                    <option value="hy-group">Hy Group (ひゃ行)</option>
+                    <option value="my-group">My Group (みゃ行)</option>
+                    <option value="ry-group">Ry Group (りゃ行)</option>
+                </optgroup>
+                <optgroup label="Obsolete Hiragana">
+                    <option value="obsolete-group">Obsolete Hiragana</option>
+                </optgroup>
+            </select>
+            <button id="start-button">Start</button>
+        </div>
+        <div class="app-container">
+            <div class="slogan-container" id="slogan-container">
+                <h1>Embark on a Journey to Master Hiragana!</h1>
+                <p>Start with the basics, explore the depths, and perfect your skills.</p>
+            </div>
+            <div class="flashcard-container" id="flashcard-container">
+                <!-- Flashcards will be dynamically generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

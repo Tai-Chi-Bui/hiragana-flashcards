@@ -17,11 +17,11 @@ function startReview() {
             { character: 'お', sound: 'o', audio: '005_o' }
         ],
         'k-group': [
-            { character: 'か', sound: 'ka', audio: '' },
-            { character: 'き', sound: 'ki', audio: 'audio/ki.mp3' },
-            { character: 'く', sound: 'ku', audio: 'audio/ku.mp3' },
-            { character: 'け', sound: 'ke', audio: 'audio/ke.mp3' },
-            { character: 'こ', sound: 'ko', audio: 'audio/ko.mp3' }
+            { character: 'か', sound: 'ka', audio: '006_ka' },
+            { character: 'き', sound: 'ki', audio: '007_ki' },
+            { character: 'く', sound: 'ku', audio: '008_ku' },
+            { character: 'け', sound: 'ke', audio: '009_ke' },
+            { character: 'こ', sound: 'ko', audio: '0010_ko' }
         ],
         's-group': [
             { character: 'さ', sound: 'sa', audio: 'audio/sa.mp3' },

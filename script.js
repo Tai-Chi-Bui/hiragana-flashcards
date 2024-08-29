@@ -31,11 +31,11 @@ function startReview() {
             { character: 'そ', sound: 'so', audio: '015_so' }
         ],
         't-group': [
-            { character: 'た', sound: 'ta', audio: 'audio/ta.mp3' },
-            { character: 'ち', sound: 'chi', audio: 'audio/chi.mp3' },
-            { character: 'つ', sound: 'tsu', audio: 'audio/tsu.mp3' },
-            { character: 'て', sound: 'te', audio: 'audio/te.mp3' },
-            { character: 'と', sound: 'to', audio: 'audio/to.mp3' }
+            { character: 'た', sound: 'ta', audio: '016_ta' },
+            { character: 'ち', sound: 'chi', audio: '017_chi' },
+            { character: 'つ', sound: 'tsu', audio: '018_tsu' },
+            { character: 'て', sound: 'te', audio: '019_te' },
+            { character: 'と', sound: 'to', audio: '020_to' }
         ],
         'n-group': [
             { character: 'な', sound: 'na', audio: 'audio/na.mp3' },

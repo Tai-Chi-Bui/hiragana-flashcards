@@ -1,161 +1,160 @@
 document.getElementById('start-button').addEventListener('click', startReview);
 
-function startReview() {
+async function startReview() {
     const category = document.getElementById('category-select').value;
     const flashcardContainer = document.getElementById('flashcard-container');
     flashcardContainer.innerHTML = ''; // Clear previous flashcards
     flashcardContainer.style.display = 'block'; // Show flashcards container
 
-    // Hiragana characters and sounds data
-    // https://hkjapanesetutor.com/hiragana-katakana-chart-with-audio-sound/
     const hiraganaData = {
         'a-group': [
-            { character: 'あ', sound: 'a', audio: '001_a' },
-            { character: 'い', sound: 'i', audio: '002_i' },
-            { character: 'う', sound: 'u', audio: '003_u' },
-            { character: 'え', sound: 'e', audio: '004_e' },
-            { character: 'お', sound: 'o', audio: '005_o' }
+            { character: 'あ', sound: 'a' },
+            { character: 'い', sound: 'i' },
+            { character: 'う', sound: 'u' },
+            { character: 'え', sound: 'e' },
+            { character: 'お', sound: 'o' }
         ],
         'k-group': [
-            { character: 'か', sound: 'ka', audio: '006_ka' },
-            { character: 'き', sound: 'ki', audio: '007_ki' },
-            { character: 'く', sound: 'ku', audio: '008_ku' },
-            { character: 'け', sound: 'ke', audio: '009_ke' },
-            { character: 'こ', sound: 'ko', audio: '010_ko' }
+            { character: 'か', sound: 'ka' },
+            { character: 'き', sound: 'ki' },
+            { character: 'く', sound: 'ku' },
+            { character: 'け', sound: 'ke' },
+            { character: 'こ', sound: 'ko' }
         ],
         's-group': [
-            { character: 'さ', sound: 'sa', audio: '011_sa' },
-            { character: 'し', sound: 'shi', audio: '012_shi' },
-            { character: 'す', sound: 'su', audio: '013_su' },
-            { character: 'せ', sound: 'se', audio: '014_se' },
-            { character: 'そ', sound: 'so', audio: '015_so' }
+            { character: 'さ', sound: 'sa' },
+            { character: 'し', sound: 'shi' },
+            { character: 'す', sound: 'su' },
+            { character: 'せ', sound: 'se' },
+            { character: 'そ', sound: 'so' }
         ],
         't-group': [
-            { character: 'た', sound: 'ta', audio: '016_ta' },
-            { character: 'ち', sound: 'chi', audio: '017_chi' },
-            { character: 'つ', sound: 'tsu', audio: '018_tsu' },
-            { character: 'て', sound: 'te', audio: '019_te' },
-            { character: 'と', sound: 'to', audio: '020_to' }
+            { character: 'た', sound: 'ta' },
+            { character: 'ち', sound: 'chi' },
+            { character: 'つ', sound: 'tsu' },
+            { character: 'て', sound: 'te' },
+            { character: 'と', sound: 'to' }
         ],
         'n-group': [
-            { character: 'な', sound: 'na', audio: 'audio/na.mp3' },
-            { character: 'に', sound: 'ni', audio: 'audio/ni.mp3' },
-            { character: 'ぬ', sound: 'nu', audio: 'audio/nu.mp3' },
-            { character: 'ね', sound: 'ne', audio: 'audio/ne.mp3' },
-            { character: 'の', sound: 'no', audio: 'audio/no.mp3' }
+            { character: 'な', sound: 'na' },
+            { character: 'に', sound: 'ni' },
+            { character: 'ぬ', sound: 'nu' },
+            { character: 'ね', sound: 'ne' },
+            { character: 'の', sound: 'no' }
         ],
         'h-group': [
-            { character: 'は', sound: 'ha', audio: 'audio/ha.mp3' },
-            { character: 'ひ', sound: 'hi', audio: 'audio/hi.mp3' },
-            { character: 'ふ', sound: 'fu', audio: 'audio/fu.mp3' },
-            { character: 'へ', sound: 'he', audio: 'audio/he.mp3' },
-            { character: 'ほ', sound: 'ho', audio: 'audio/ho.mp3' }
+            { character: 'は', sound: 'ha' },
+            { character: 'ひ', sound: 'hi' },
+            { character: 'ふ', sound: 'fu' },
+            { character: 'へ', sound: 'he' },
+            { character: 'ほ', sound: 'ho' }
         ],
         'm-group': [
-            { character: 'ま', sound: 'ma', audio: 'audio/ma.mp3' },
-            { character: 'み', sound: 'mi', audio: 'audio/mi.mp3' },
-            { character: 'む', sound: 'mu', audio: 'audio/mu.mp3' },
-            { character: 'め', sound: 'me', audio: 'audio/me.mp3' },
-            { character: 'も', sound: 'mo', audio: 'audio/mo.mp3' }
+            { character: 'ま', sound: 'ma' },
+            { character: 'み', sound: 'mi' },
+            { character: 'む', sound: 'mu' },
+            { character: 'め', sound: 'me' },
+            { character: 'も', sound: 'mo' }
         ],
         'y-group': [
-            { character: 'や', sound: 'ya', audio: 'audio/ya.mp3' },
-            { character: 'ゆ', sound: 'yu', audio: 'audio/yu.mp3' },
-            { character: 'よ', sound: 'yo', audio: 'audio/yo.mp3' }
+            { character: 'や', sound: 'ya' },
+            { character: 'ゆ', sound: 'yu' },
+            { character: 'よ', sound: 'yo' }
         ],
         'r-group': [
-            { character: 'ら', sound: 'ra', audio: 'audio/ra.mp3' },
-            { character: 'り', sound: 'ri', audio: 'audio/ri.mp3' },
-            { character: 'る', sound: 'ru', audio: 'audio/ru.mp3' },
-            { character: 'れ', sound: 're', audio: 'audio/re.mp3' },
-            { character: 'ろ', sound: 'ro', audio: 'audio/ro.mp3' }
+            { character: 'ら', sound: 'ra' },
+            { character: 'り', sound: 'ri' },
+            { character: 'る', sound: 'ru' },
+            { character: 'れ', sound: 're' },
+            { character: 'ろ', sound: 'ro' }
         ],
         'w-group': [
-            { character: 'わ', sound: 'wa', audio: 'audio/wa.mp3' },
-            { character: 'を', sound: 'wo', audio: 'audio/wo.mp3' }
+            { character: 'わ', sound: 'wa' },
+            { character: 'を', sound: 'wo' }
         ],
         'n-character': [
-            { character: 'ん', sound: 'n', audio: 'audio/n.mp3' }
+            { character: 'ん', sound: 'n' }
         ],
         'g-group': [
-            { character: 'が', sound: 'ga', audio: 'audio/ga.mp3' },
-            { character: 'ぎ', sound: 'gi', audio: 'audio/gi.mp3' },
-            { character: 'ぐ', sound: 'gu', audio: 'audio/gu.mp3' },
-            { character: 'げ', sound: 'ge', audio: 'audio/ge.mp3' },
-            { character: 'ご', sound: 'go', audio: 'audio/go.mp3' }
+            { character: 'が', sound: 'ga' },
+            { character: 'ぎ', sound: 'gi' },
+            { character: 'ぐ', sound: 'gu' },
+            { character: 'げ', sound: 'ge' },
+            { character: 'ご', sound: 'go' }
         ],
         'z-group': [
-            { character: 'ざ', sound: 'za', audio: 'audio/za.mp3' },
-            { character: 'じ', sound: 'ji', audio: 'audio/ji.mp3' },
-            { character: 'ず', sound: 'zu', audio: 'audio/zu.mp3' },
-            { character: 'ぜ', sound: 'ze', audio: 'audio/ze.mp3' },
-            { character: 'ぞ', sound: 'zo', audio: 'audio/zo.mp3' }
+            { character: 'ざ', sound: 'za' },
+            { character: 'じ', sound: 'ji' },
+            { character: 'ず', sound: 'zu' },
+            { character: 'ぜ', sound: 'ze' },
+            { character: 'ぞ', sound: 'zo' }
         ],
         'd-group': [
-            { character: 'だ', sound: 'da', audio: 'audio/da.mp3' },
-            { character: 'ぢ', sound: 'ji', audio: 'audio/ji.mp3' },
-            { character: 'づ', sound: 'zu', audio: 'audio/zu.mp3' },
-            { character: 'で', sound: 'de', audio: 'audio/de.mp3' },
-            { character: 'ど', sound: 'do', audio: 'audio/do.mp3' }
+            { character: 'だ', sound: 'da' },
+            { character: 'ぢ', sound: 'ji' },
+            { character: 'づ', sound: 'zu' },
+            { character: 'で', sound: 'de' },
+            { character: 'ど', sound: 'do' }
         ],
-
+    
         'b-group': [
-            { character: 'ば', sound: 'ba', audio: 'audio/ba.mp3' },
-            { character: 'び', sound: 'bi', audio: 'audio/bi.mp3' },
-            { character: 'ぶ', sound: 'bu', audio: 'audio/bu.mp3' },
-            { character: 'べ', sound: 'be', audio: 'audio/be.mp3' },
-            { character: 'ぼ', sound: 'bo', audio: 'audio/bo.mp3' }
+            { character: 'ば', sound: 'ba' },
+            { character: 'び', sound: 'bi' },
+            { character: 'ぶ', sound: 'bu' },
+            { character: 'べ', sound: 'be' },
+            { character: 'ぼ', sound: 'bo' }
         ],
         'p-group': [
-            { character: 'ぱ', sound: 'pa', audio: 'audio/pa.mp3' },
-            { character: 'ぴ', sound: 'pi', audio: 'audio/pi.mp3' },
-            { character: 'ぷ', sound: 'pu', audio: 'audio/pu.mp3' },
-            { character: 'ぺ', sound: 'pe', audio: 'audio/pe.mp3' },
-            { character: 'ぽ', sound: 'po', audio: 'audio/po.mp3' }
+            { character: 'ぱ', sound: 'pa' },
+            { character: 'ぴ', sound: 'pi' },
+            { character: 'ぷ', sound: 'pu' },
+            { character: 'ぺ', sound: 'pe' },
+            { character: 'ぽ', sound: 'po' }
         ],
         'ky-group': [
-            { character: 'きゃ', sound: 'kya', audio: 'audio/kya.mp3' },
-            { character: 'きゅ', sound: 'kyu', audio: 'audio/kyu.mp3' },
-            { character: 'きょ', sound: 'kyo', audio: 'audio/kyo.mp3' }
+            { character: 'きゃ', sound: 'kya' },
+            { character: 'きゅ', sound: 'kyu' },
+            { character: 'きょ', sound: 'kyo' }
         ],
         'sh-group': [
-            { character: 'しゃ', sound: 'sha', audio: 'audio/sha.mp3' },
-            { character: 'しゅ', sound: 'shu', audio: 'audio/shu.mp3' },
-            { character: 'しょ', sound: 'sho', audio: 'audio/sho.mp3' }
+            { character: 'しゃ', sound: 'sha' },
+            { character: 'しゅ', sound: 'shu' },
+            { character: 'しょ', sound: 'sho' }
         ],
         'ch-group': [
-            { character: 'ちゃ', sound: 'cha', audio: 'audio/cha.mp3' },
-            { character: 'ちゅ', sound: 'chu', audio: 'audio/chu.mp3' },
-            { character: 'ちょ', sound: 'cho', audio: 'audio/cho.mp3' }
+            { character: 'ちゃ', sound: 'cha' },
+            { character: 'ちゅ', sound: 'chu' },
+            { character: 'ちょ', sound: 'cho' }
         ],
         'ny-group': [
-            { character: 'にゃ', sound: 'nya', audio: 'audio/nya.mp3' },
-            { character: 'にゅ', sound: 'nyu', audio: 'audio/nyu.mp3' },
-            { character: 'にょ', sound: 'nyo', audio: 'audio/nyo.mp3' }
+            { character: 'にゃ', sound: 'nya' },
+            { character: 'にゅ', sound: 'nyu' },
+            { character: 'にょ', sound: 'nyo' }
         ],
         'hy-group': [
-            { character: 'ひゃ', sound: 'hya', audio: 'audio/hya.mp3' },
-            { character: 'ひゅ', sound: 'hyu', audio: 'audio/hyu.mp3' },
-            { character: 'ひょ', sound: 'hyo', audio: 'audio/hyo.mp3' }
+            { character: 'ひゃ', sound: 'hya' },
+            { character: 'ひゅ', sound: 'hyu' },
+            { character: 'ひょ', sound: 'hyo' }
         ],
         'my-group': [
-            { character: 'みゃ', sound: 'mya', audio: 'audio/mya.mp3' },
-            { character: 'みゅ', sound: 'myu', audio: 'audio/myu.mp3' },
-            { character: 'みょ', sound: 'myo', audio: 'audio/myo.mp3' }
+            { character: 'みゃ', sound: 'mya' },
+            { character: 'みゅ', sound: 'myu' },
+            { character: 'みょ', sound: 'myo' }
         ],
         'ry-group': [
-            { character: 'りゃ', sound: 'rya', audio: 'audio/rya.mp3' },
-            { character: 'りゅ', sound: 'ryu', audio: 'audio/ryu.mp3' },
-            { character: 'りょ', sound: 'ryo', audio: 'audio/ryo.mp3' }
+            { character: 'りゃ', sound: 'rya' },
+            { character: 'りゅ', sound: 'ryu' },
+            { character: 'りょ', sound: 'ryo' }
         ],
         'obsolete-group': [
-            { character: 'ゐ', sound: 'wi', audio: 'audio/wi.mp3' },
-            { character: 'ゑ', sound: 'we', audio: 'audio/we.mp3' }
+            { character: 'ゐ', sound: 'wi' },
+            { character: 'ゑ', sound: 'we' }
         ]
     };
+    
 
     if (hiraganaData[category]) {
-        hiraganaData[category].forEach(item => {
+        for (const item of hiraganaData[category]) {
             const flashcard = document.createElement('div');
             flashcard.classList.add('flashcard');
             flashcard.innerHTML = `
@@ -167,18 +166,18 @@ function startReview() {
             `;
             flashcard.querySelector('.play-sound-icon').addEventListener('click', (event) => {
                 event.stopPropagation(); // Prevent card flip on icon click
-                playAudio(item.audio);
+                playAudio(item.character); // Pass character to playAudio
             });
             flashcard.addEventListener('click', () => flashcard.classList.toggle('flipped'));
             flashcardContainer.appendChild(flashcard);
-        });
+        }
     } else {
         flashcardContainer.innerHTML = '<p>No data available for the selected category.</p>';
     }
 }
 
-function playAudio(audioCode) {
-    const audioUrl = `https://hkjapanesetutor.com/wp-content/uploads/2014/05/${audioCode}.mp3`;
-    const audio = new Audio(audioUrl);
-    audio.play();
+function playAudio(character) {
+    const utterance = new SpeechSynthesisUtterance(character); // Use the Hiragana character for pronunciation
+    utterance.lang = 'ja-JP'; // Set the language to Japanese
+    window.speechSynthesis.speak(utterance); // Speak the character
 }
